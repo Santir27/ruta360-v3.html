@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruta360 · Infraestructura de Movilidad Social Legal</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #0a0a0a;
+  --bg2:      #111111;
+  --bg3:      #181818;
+  --line:     rgba(255,255,255,0.07);
+  --verde:    #b8f04a;
+  --verde-d:  rgba(184,240,74,0.08);
+  --rojo:     #f04a4a;
+  --rojo-d:   rgba(240,74,74,0.08);
+  --ocre:     #d4a04a;
+  --ocre-d:   rgba(212,160,74,0.08);
+  --blanco:   #f0ede8;
+  --gris:     rgba(240,237,232,0.45);
+  --gris2:    rgba(240,237,232,0.2);
+  --F: 'Bebas Neue', sans-serif;
+  --FM: 'IBM Plex Mono', monospace;
+  --FB: 'IBM Plex Sans', sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--blanco);font-family:var(--FB);overflow-x:hidden;line-height:1;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  border-bottom:1px solid var(--line);
+  background:rgba(10,10,10,0.92);backdrop-filter:blur(20px);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;height:52px;
+}
+.nav-logo{font-family:var(--F);font-size:1.45rem;letter-spacing:0.05em;color:var(--verde);}
+.nav-logo span{color:var(--blanco);}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{font-family:var(--FM);font-size:0.62rem;color:var(--gris);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:0 20px;height:52px;display:flex;align-items:center;border-right:1px solid var(--line);transition:color .2s;}
+.nav-links a:first-child{border-left:1px solid var(--line);}
+.nav-links a:hover{color:var(--verde);}
+.nav-tag{font-family:var(--FM);font-size:0.58rem;color:var(--verde);letter-spacing:0.12em;text-transform:uppercase;}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:120px 48px 72px;position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.6;pointer-events:none;
+}
+.hero-accent{
+  position:absolute;bottom:-200px;left:-200px;
+  width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(184,240,74,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-frame{font-family:var(--FM);font-size:0.62rem;color:var(--verde);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:16px;position:relative;}
+.hero-frame::before{content:'';width:48px;height:1px;background:var(--verde);}
+.hero h1{
+  font-family:var(--F);font-size:clamp(5rem,10vw,9.5rem);
+  line-height:0.88;letter-spacing:0.02em;margin-bottom:0;position:relative;
+}
+.hero h1 .ln1{display:block;color:var(--blanco);}
+.hero h1 .ln2{display:block;color:var(--verde);}
+.hero h1 .ln3{display:block;color:var(--gris);}
+.hero-sub{
+  max-width:680px;margin-top:36px;margin-bottom:48px;position:relative;
+  font-size:1.05rem;color:var(--gris);line-height:1.7;
+  padding-left:24px;border-left:1px solid var(--verde);
+}
+.hero-sub strong{color:var(--blanco);}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap;position:relative;margin-bottom:40px;}
+.pill{font-family:var(--FM);font-size:0.6rem;letter-spacing:0.08em;padding:6px 14px;text-transform:uppercase;border:1px solid;}
+.p-v{color:var(--verde);border-color:rgba(184,240,74,0.3);background:rgba(184,240,74,0.05);}
+.p-r{color:var(--rojo);border-color:rgba(240,74,74,0.3);background:rgba(240,74,74,0.05);}
+.p-o{color:var(--ocre);border-color:rgba(212,160,74,0.3);background:rgba(212,160,74,0.05);}
+.hero-cta{display:flex;gap:12px;position:relative;}
+.btn{font-family:var(--FM);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;padding:13px 28px;cursor:pointer;border:1px solid;transition:all .2s;}
+.btn-v{background:var(--verde);color:var(--bg);border-color:var(--verde);}
+.btn-v:hover{background:transparent;color:var(--verde);}
+.btn-g{background:transparent;color:var(--blanco);border-color:rgba(240,237,232,0.2);}
+.btn-g:hover{border-color:var(--blanco);}
+
+/* STAT BAR */
+.stat-bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.sc{padding:28px 32px;border-right:1px solid var(--line);}
+.sc:last-child{border-right:none;}
+.sn{font-family:var(--F);font-size:2.6rem;color:var(--verde);line-height:1;margin-bottom:6px;}
+.sl{font-family:var(--FM);font-size:0.58rem;color:var(--gris);letter-spacing:0.06em;line-height:1.55;text-transform:uppercase;}
+
+/* SECTION BASICS */
+.sec{padding:88px 48px;max-width:1280px;margin:0 auto;}
+.sec-tag{font-family:var(--FM);font-size:0.6rem;color:var(--verde);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:12px;}
+.sec-h{font-family:var(--F);font-size:clamp(2.2rem,4vw,3.8rem);letter-spacing:0.02em;line-height:0.95;margin-bottom:16px;}
+.sec-h em{color:var(--verde);font-style:normal;}
+.sec-p{font-size:0.95rem;color:var(--gris);line-height:1.7;max-width:580px;margin-bottom:52px;}
+.divider{border:none;border-top:1px solid var(--line);}
+
+/* DIAGNÓSTICO — 2 col layout */
+.diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+.diag-cell{background:var(--bg);padding:32px 28px;}
+.diag-label{font-family:var(--FM);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;padding:4px 10px;display:inline-block;}
+.label-r{color:var(--rojo);border:1px solid rgba(240,74,74,0.3);background:var(--rojo-d);}
+.label-v{color:var(--verde);border:1px solid rgba(184,240,74,0.3);background:var(--verde-d);}
+.label-o{color:var(--ocre);border:1px solid rgba(212,160,74,0.3);background:var(--ocre-d);}
+.diag-h{font-family:var(--F);font-size:1.2rem;letter-spacing:0.02em;margin-bottom:10px;}
+.diag-p{font-size:0.85rem;color:var(--gris);line-height:1.6;}
+.diag-p strong{color:var(--blanco);}
+
+/* REGIMEN — full width card with 2 sub cols */
+.regime-box{background:var(--bg2);border:1px solid var(--line);padding:48px;}
+.regime-title{font-family:var(--F);font-size:2rem;letter-spacing:0.03em;margin-bottom:8px;}
+.regime-sub{font-size:0.88rem;color:var(--gris);margin-bottom:36px;line-height:1.6;}
+.regime-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.regime-col-title{font-family:var(--FM);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line);}
+.rct-r{color:var(--rojo);}
+.rct-v{color:var(--verde);}
+.regime-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.regime-list li{font-size:0.85rem;color:var(--gris);line-height:1.5;display:flex;gap:10px;}
+.regime-list li::before{content:'—';color:var(--verde);flex-shrink:0;font-family:var(--FM);}
+.regime-list.r-list li::before{color:var(--rojo);}
+.regime-list li strong{color:var(--blanco);}
+.regime-tension{margin-top:32px;border-top:1px solid var(--line);padding-top:32px;font-family:var(--FM);font-size:0.78rem;color:var(--ocre);line-height:1.7;}
+
+/* PERSONAS — 3 cards */
+.personas{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.persona{background:var(--bg);padding:32px 26px;position:relative;overflow:hidden;}
+.persona::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.pjuan::before{background:var(--verde);}
+.pval::before{background:var(--ocre);}
+.pseb::before{background:var(--rojo);}
+.p-num{font-family:var(--FM);font-size:0.58rem;color:var(--gris2);letter-spacing:0.12em;margin-bottom:16px;}
+.p-name{font-family:var(--F);font-size:1.8rem;letter-spacing:0.03em;margin-bottom:4px;}
+.p-loc{font-family:var(--FM);font-size:0.58rem;color:var(--gris);letter-spacing:0.08em;margin-bottom:18px;}
+.p-quote{font-style:italic;font-size:0.85rem;color:var(--gris);line-height:1.6;margin-bottom:18px;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+.p-need-label{font-family:var(--FM);font-size:0.55rem;color:var(--verde);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;}
+.p-need{font-size:0.83rem;color:var(--gris);line-height:1.6;}
+.p-need strong{color:var(--blanco);}
+.p-barrier-label{font-family:var(--FM);font-size:0.55rem;color:var(--rojo);letter-spacing:0.12em;text-transform:uppercase;margin-top:14px;margin-bottom:6px;}
+.p-barrier{font-size:0.83rem;color:var(--gris);line-height:1.6;}
+
+/* NICHO SOCIOTÉCNICO — diagram-ish */
+.niche-diagram{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:center;background:var(--bg2);border:1px solid var(--line);}
+.niche-col{padding:40px 36px;}
+.niche-label{font-family:var(--FM);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;}
+.niche-h{font-family:var(--F);font-size:1.6rem;letter-spacing:0.02em;margin-bottom:14px;}
+.niche-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.niche-list li{font-size:0.84rem;color:var(--gris);line-height:1.5;padding-left:16px;position:relative;}
+.niche-list li::before{content:'·';position:absolute;left:0;color:var(--verde);}
+.niche-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-left:1px solid var(--line);border-right:1px solid var(--line);height:100%;padding:20px 0;}
+.niche-arrow span{font-family:var(--FM);font-size:0.5rem;color:var(--gris2);letter-spacing:0.08em;writing-mode:vertical-lr;text-transform:uppercase;}
+
+/* ACTORES — 7-actor grid */
+.actors-intro{margin-bottom:40px;}
+.actors-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--line);}
+.actor-card{background:var(--bg);padding:24px 16px;text-align:center;}
+.actor-ico{font-size:1.4rem;margin-bottom:10px;}
+.actor-role{font-family:var(--FM);font-size:0.52rem;color:var(--verde);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;}
+.actor-name{font-family:var(--F);font-size:0.85rem;letter-spacing:0.02em;margin-bottom:8px;}
+.actor-desc{font-size:0.75rem;color:var(--gris);line-height:1.5;}
+.actors-flows{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:1px;}
+.flow-card{background:var(--bg2);padding:24px 20px;}
+.flow-from{font-family:var(--FM);font-size:0.55rem;color:var(--gris2);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+.flow-arrow{font-family:var(--FM);font-size:0.65rem;color:var(--verde);margin-bottom:8px;}
+.flow-desc{font-size:0.8rem;color:var(--gris);line-height:1.5;}
+.flow-desc strong{color:var(--blanco);}
+
+/* INTERMEDIARIOS */
+.interm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+.interm-card{background:var(--bg);padding:28px 22px;}
+.interm-tag{font-family:var(--FM);font-size:0.55rem;color:var(--ocre);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.interm-name{font-family:var(--F);font-size:1rem;letter-spacing:0.02em;margin-bottom:8px;}
+.interm-rol{font-size:0.8rem;color:var(--gris);line-height:1.5;}
+.interm-rol strong{color:var(--blanco);}
+
+/* MODELO FINANCIERO */
+.fin-matrix{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin-bottom:1px;}
+.fin-card{background:var(--bg);padding:28px 22px;}
+.fin-src{font-family:var(--FM);font-size:0.55rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.fin-h{font-family:var(--F);font-size:1rem;letter-spacing:0.02em;margin-bottom:14px;}
+.fin-items{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.fin-items li{font-size:0.8rem;color:var(--gris);line-height:1.4;padding-left:14px;position:relative;}
+.fin-items li::before{content:'→';position:absolute;left:0;color:var(--verde);font-family:var(--FM);font-size:0.65rem;}
+.fin-est{font-family:var(--FM);font-size:0.7rem;color:var(--ocre);margin-top:12px;padding-top:12px;border-top:1px solid var(--line);}
+.fin-sostenibilidad{background:var(--bg2);border:1px solid var(--line);padding:36px 40px;}
+.fin-sos-h{font-family:var(--F);font-size:1.4rem;letter-spacing:0.02em;margin-bottom:14px;}
+.fin-sos-p{font-size:0.88rem;color:var(--gris);line-height:1.7;max-width:700px;}
+.fin-sos-p strong{color:var(--verde);}
+
+/* INDICADORES */
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);}
+.ind-card{background:var(--bg);padding:28px 24px;}
+.ind-dim{font-family:var(--FM);font-size:0.55rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.ind-h{font-family:var(--F);font-size:1rem;letter-spacing:0.02em;margin-bottom:14px;}
+.ind-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.ind-list li{font-size:0.8rem;color:var(--gris);line-height:1.5;}
+.ind-list li span{font-family:var(--FM);font-size:0.65rem;color:var(--gris2);display:block;margin-top:2px;}
+
+/* ESCALA Y DIFUSIÓN */
+.escala-steps{display:flex;flex-direction:column;gap:1px;background:var(--line);}
+.escala-item{display:grid;grid-template-columns:160px 1fr 200px;gap:0;background:var(--bg);}
+.esc-num{padding:28px;border-right:1px solid var(--line);display:flex;align-items:flex-start;justify-content:flex-start;}
+.esc-num-inner{font-family:var(--F);font-size:3rem;color:rgba(184,240,74,0.15);line-height:1;}
+.esc-body{padding:28px 32px;border-right:1px solid var(--line);}
+.esc-h{font-family:var(--F);font-size:1.1rem;letter-spacing:0.02em;margin-bottom:8px;}
+.esc-p{font-size:0.84rem;color:var(--gris);line-height:1.6;}
+.esc-p strong{color:var(--blanco);}
+.esc-meta{padding:28px 24px;display:flex;flex-direction:column;gap:8px;justify-content:flex-start;}
+.esc-tag{font-family:var(--FM);font-size:0.58rem;color:var(--gris2);letter-spacing:0.06em;text-transform:uppercase;}
+.esc-val{font-family:var(--FM);font-size:0.72rem;color:var(--verde);}
+
+/* PROTOTIPO */
+.proto-shell{background:var(--bg2);border:1px solid var(--line);}
+.proto-bar{padding:14px 28px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;}
+.dot{width:9px;height:9px;border-radius:50%;}
+.proto-bar span{font-family:var(--FM);font-size:0.6rem;color:var(--gris2);margin-left:12px;letter-spacing:0.06em;}
+.proto-tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;}
+.ptab{font-family:var(--FM);font-size:0.6rem;color:var(--gris);padding:13px 22px;cursor:pointer;letter-spacing:0.06em;text-transform:uppercase;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;flex-shrink:0;}
+.ptab.on{color:var(--verde);border-bottom-color:var(--verde);}
+.ptab:hover{color:var(--blanco);}
+.proto-body{display:grid;grid-template-columns:280px 1fr;min-height:580px;}
+.proto-phone-col{background:var(--bg);padding:36px 24px;display:flex;flex-direction:column;align-items:center;gap:16px;border-right:1px solid var(--line);}
+.proto-text-col{padding:40px 44px;}
+.tab-pane{display:none;}
+.tab-pane.on{display:grid;}
+
+/* phone */
+.phone{width:200px;height:420px;background:#0d0d0d;border-radius:28px;border:1.5px solid rgba(255,255,255,0.12);overflow:hidden;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.6),inset 0 0 0 1px rgba(255,255,255,0.04);flex-shrink:0;}
+.notch{width:64px;height:16px;background:#0a0a0a;border-radius:0 0 10px 10px;margin:0 auto;position:relative;z-index:2;}
+.ph-scr{position:absolute;inset:0;padding:20px 12px 10px;display:flex;flex-direction:column;gap:7px;background:#0d0d0d;overflow:hidden;}
+.ph-row{display:flex;justify-content:space-between;align-items:center;}
+.ph-name{font-family:var(--F);font-size:0.75rem;letter-spacing:0.02em;}
+.ph-sub{font-family:var(--FM);font-size:0.42rem;color:var(--gris);letter-spacing:0.06em;}
+.ph-badge{font-family:var(--FM);font-size:0.42rem;background:var(--verde-d);color:var(--verde);border:1px solid rgba(184,240,74,0.2);padding:3px 7px;}
+.ph-xp{background:rgba(184,240,74,0.05);border:1px solid rgba(184,240,74,0.12);padding:10px;border-radius:4px;}
+.ph-xp-l{font-family:var(--FM);font-size:0.44rem;color:var(--verde);letter-spacing:0.08em;text-transform:uppercase;}
+.ph-xp-v{font-family:var(--F);font-size:1.4rem;color:var(--verde);line-height:1;margin:2px 0;}
+.ph-bar-bg{background:rgba(184,240,74,0.08);height:3px;border-radius:2px;}
+.ph-bar{background:var(--verde);height:3px;border-radius:2px;}
+.ph-bar-row{display:flex;justify-content:space-between;margin-top:3px;}
+.ph-bar-row span{font-family:var(--FM);font-size:0.4rem;color:var(--gris2);}
+.ph-mini{display:grid;grid-template-columns:1fr 1fr;gap:5px;}
+.ph-mc{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:3px;padding:7px;}
+.ph-mc-i{font-size:0.8rem;}
+.ph-mc-l{font-family:var(--FM);font-size:0.4rem;color:var(--gris2);letter-spacing:0.05em;}
+.ph-mc-v{font-family:var(--FM);font-size:0.6rem;font-weight:500;color:var(--blanco);}
+.ph-reto{background:rgba(240,74,74,0.05);border:1px solid rgba(240,74,74,0.15);border-radius:3px;padding:8px;}
+.ph-reto-l{font-family:var(--FM);font-size:0.42rem;color:var(--rojo);letter-spacing:0.08em;text-transform:uppercase;}
+.ph-reto-t{font-size:0.56rem;color:var(--gris);line-height:1.4;margin-top:2px;}
+.ph-offline{font-family:var(--FM);font-size:0.4rem;color:rgba(184,240,74,0.4);letter-spacing:0.06em;text-align:center;padding-top:4px;border-top:1px solid var(--line);margin-top:auto;}
+.ph-nav{display:flex;justify-content:space-around;padding:5px 0;background:rgba(255,255,255,0.02);border-radius:3px;margin-top:auto;}
+.ph-nav-i{text-align:center;}
+.ph-nav-icon{font-size:0.75rem;}
+.ph-nav-l{font-family:var(--FM);font-size:0.38rem;color:var(--gris2);display:block;letter-spacing:0.04em;}
+.ph-nav-i.on .ph-nav-l{color:var(--verde);}
+
+/* phone id screen */
+.ph-id-hdr{background:rgba(184,240,74,0.04);border-bottom:1px solid var(--line);padding:14px 12px;}
+.ph-id-av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--verde),rgba(184,240,74,0.3));border:1.5px solid rgba(184,240,74,0.3);display:flex;align-items:center;justify-content:center;font-size:0.9rem;margin-bottom:5px;}
+.ph-id-name{font-family:var(--F);font-size:0.88rem;letter-spacing:0.02em;}
+.ph-id-tag{font-family:var(--FM);font-size:0.42rem;color:var(--verde);letter-spacing:0.08em;}
+.ph-rep-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:8px 12px;}
+.ph-rep{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px;padding:6px;}
+.ph-rep-n{font-family:var(--FM);font-size:0.4rem;color:var(--gris2);letter-spacing:0.05em;}
+.ph-rep-bar-bg{background:rgba(255,255,255,0.06);border-radius:2px;height:3px;margin:3px 0;}
+.ph-rep-bar{border-radius:2px;height:3px;}
+.ph-rep-v{font-family:var(--FM);font-size:0.55rem;font-weight:500;}
+.ph-verif{padding:0 12px 8px;font-size:0.52rem;color:var(--gris);line-height:1.5;}
+.ph-verif strong{font-family:var(--FM);font-size:0.4rem;color:var(--verde);letter-spacing:0.06em;display:block;margin-bottom:3px;}
+
+/* phone jobs */
+.ph-job-hdr{padding:10px 12px 6px;}
+.ph-job-tag{font-family:var(--FM);font-size:0.42rem;color:var(--verde);letter-spacing:0.07em;text-transform:uppercase;}
+.ph-jobs{display:flex;flex-direction:column;gap:5px;padding:0 12px;overflow-y:auto;}
+.ph-job{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:3px;padding:8px;display:flex;gap:7px;align-items:flex-start;}
+.ph-job.featured{border-color:rgba(184,240,74,0.2);background:rgba(184,240,74,0.03);}
+.ph-job-ico{font-size:0.9rem;flex-shrink:0;}
+.ph-job-title{font-family:var(--FM);font-size:0.56rem;font-weight:500;color:var(--blanco);margin-bottom:2px;}
+.ph-job-meta{font-size:0.46rem;color:var(--gris);line-height:1.4;}
+.ph-job-pay{font-family:var(--FM);font-size:0.52rem;color:var(--verde);margin-top:2px;}
+.ph-job-tag2{font-family:var(--FM);font-size:0.4rem;background:rgba(184,240,74,0.06);color:var(--verde);border:1px solid rgba(184,240,74,0.15);padding:1px 5px;margin-top:3px;display:inline-block;}
+
+/* phone wallet */
+.ph-wal-hdr{background:rgba(184,240,74,0.04);border:1px solid rgba(184,240,74,0.1);margin:10px 12px;border-radius:3px;padding:10px;text-align:center;}
+.ph-wal-l{font-family:var(--FM);font-size:0.42rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;}
+.ph-wal-v{font-family:var(--F);font-size:1.6rem;color:var(--verde);line-height:1;}
+.ph-wal-sub{font-family:var(--FM);font-size:0.42rem;color:var(--gris);}
+.ph-rew-list{display:flex;flex-direction:column;gap:4px;padding:0 12px;}
+.ph-rew{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px;padding:6px;}
+.ph-rew-ico{font-size:0.85rem;}
+.ph-rew-info{flex:1;}
+.ph-rew-name{font-family:var(--FM);font-size:0.5rem;color:var(--blanco);}
+.ph-rew-cost{font-family:var(--FM);font-size:0.4rem;color:var(--gris2);}
+.ph-rew-btn{font-family:var(--FM);font-size:0.4rem;background:rgba(184,240,74,0.08);color:var(--verde);border:1px solid rgba(184,240,74,0.18);padding:2px 6px;cursor:pointer;}
+
+/* phone ruta screen */
+.ph-ruta{padding:10px 12px;display:flex;flex-direction:column;gap:5px;}
+.ph-node{display:flex;align-items:center;gap:7px;border-radius:3px;padding:7px 9px;}
+.ph-node.done{background:rgba(184,240,74,0.06);border:1px solid rgba(184,240,74,0.15);}
+.ph-node.active{background:rgba(212,160,74,0.06);border:1px solid rgba(212,160,74,0.2);}
+.ph-node.locked{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);opacity:.5;}
+.ph-circle{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.56rem;font-weight:700;flex-shrink:0;}
+.done .ph-circle{background:var(--verde);color:var(--bg);}
+.active .ph-circle{background:var(--ocre);color:var(--bg);}
+.locked .ph-circle{background:rgba(255,255,255,0.06);color:var(--gris2);}
+.ph-node-n{font-family:var(--FM);font-size:0.54rem;color:var(--blanco);}
+.ph-node-s{font-family:var(--FM);font-size:0.42rem;color:var(--gris2);}
+
+/* proto text */
+.pt-h{font-family:var(--F);font-size:1.35rem;letter-spacing:0.02em;margin-bottom:10px;line-height:1.1;}
+.pt-p{font-size:0.87rem;color:var(--gris);line-height:1.65;margin-bottom:20px;}
+.pt-p strong{color:var(--blanco);}
+.ft-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.ft-list li{display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:var(--gris);line-height:1.5;}
+.ft-list li::before{content:'→';color:var(--verde);font-family:var(--FM);flex-shrink:0;margin-top:1px;}
+.ft-list li strong{color:var(--blanco);}
+.proto-correction{background:var(--verde-d);border:1px solid rgba(184,240,74,0.2);padding:14px 18px;margin-top:20px;}
+.pc-tag{font-family:var(--FM);font-size:0.55rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.pc-text{font-size:0.82rem;color:var(--gris);line-height:1.6;}
+.pc-text strong{color:var(--verde);}
+
+/* FRAMING LANGUAGE */
+.framing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--line);}
+.fr-cell{background:var(--bg);padding:28px 22px;}
+.fr-wrong{font-family:var(--FM);font-size:0.55rem;color:var(--rojo);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.fr-old{font-size:0.85rem;color:var(--gris2);margin-bottom:16px;text-decoration:line-through;}
+.fr-right{font-family:var(--FM);font-size:0.55rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.fr-new{font-family:var(--F);font-size:1rem;letter-spacing:0.02em;color:var(--blanco);}
+
+/* PITCH CLOSE */
+.pitch-close{background:var(--bg2);border:1px solid var(--line);padding:64px 48px;text-align:center;}
+.pitch-h{font-family:var(--F);font-size:clamp(2rem,5vw,4.5rem);letter-spacing:0.02em;line-height:0.9;margin-bottom:24px;}
+.pitch-h em{color:var(--verde);font-style:normal;}
+.pitch-p{font-size:0.95rem;color:var(--gris);max-width:600px;margin:0 auto 32px;line-height:1.7;}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--line);padding:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;}
+.foot-brand{font-family:var(--F);font-size:1.6rem;color:var(--verde);letter-spacing:0.03em;}
+.foot-brand span{color:var(--blanco);}
+.foot-sub{font-family:var(--FM);font-size:0.56rem;color:var(--gris);letter-spacing:0.07em;margin-top:4px;}
+.foot-right{font-family:var(--FM);font-size:0.56rem;color:var(--gris2);letter-spacing:0.06em;text-align:right;line-height:1.9;}
+
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero{padding:100px 24px 56px;}
+  .sec{padding:60px 24px;}
+  .stat-bar,.diag-grid,.personas,.actors-grid,.niche-diagram,.interm-grid,.fin-matrix,.ind-grid,.framing-grid{grid-template-columns:1fr;}
+  .regime-cols{grid-template-columns:1fr;}
+  .escala-item{grid-template-columns:1fr;}
+  .esc-num{display:none;}
+  .esc-meta{border-top:1px solid var(--line);}
+  .proto-body{grid-template-columns:1fr;}
+  .proto-phone-col{display:none;}
+  .actors-flows{grid-template-columns:1fr;}
+  .niche-arrow{display:none;}
+  footer{padding:40px 24px;flex-direction:column;align-items:flex-start;}
+  .foot-right{text-align:left;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ruta<span>360</span></div>
+  <ul class="nav-links">
+    <li><a href="#diagnostico">Diagnóstico</a></li>
+    <li><a href="#regimen">Régimen</a></li>
+    <li><a href="#nicho">Nicho</a></li>
+    <li><a href="#actores">Actores</a></li>
+    <li><a href="#modelo">Modelo</a></li>
+    <li><a href="#proto">Prototipo</a></li>
+    <li><a href="#escala">Escala</a></li>
+  </ul>
+  <div class="nav-tag">Bogotá · v3 · Sistémica</div>
+</nav>
+
+<!-- HERO -->
+<div style="background:var(--bg);">
+  <div class="hero" style="max-width:1280px;margin:0 auto;">
+    <div class="hero-noise"></div>
+    <div class="hero-accent"></div>
+    <div class="hero-frame" style="position:relative;">Innovación Social · Nicho Sociotécnico · Transición desde la Base</div>
+    <h1 style="position:relative;">
+      <span class="ln1">Infraestructura</span>
+      <span class="ln2">de Movilidad</span>
+      <span class="ln3">Social Legal</span>
+    </h1>
+    <div class="hero-sub" style="position:relative;">
+      No es una app educativa. No es un programa de prevención. Es una <strong>infraestructura alternativa</strong> que compite directamente contra el rebusque, la economía informal y la microcriminalidad, creando rutas de transición que hoy son invisibles para los jóvenes de los territorios vulnerables de Bogotá.
+    </div>
+    <div class="hero-pills" style="position:relative;">
+      <span class="pill p-v">No es educativa — es infraestructura</span>
+      <span class="pill p-r">Compite contra el régimen informal</span>
+      <span class="pill p-o">Nicho sociotécnico territorial</span>
+      <span class="pill p-v">Innovación desde la base</span>
+      <span class="pill p-r">Ciudad Bolívar · Kennedy · Suba Rincón</span>
+    </div>
+    <div class="hero-cta" style="position:relative;">
+      <button class="btn btn-v" onclick="document.getElementById('nicho').scrollIntoView()">Ver el Nicho</button>
+      <button class="btn btn-g" onclick="document.getElementById('proto').scrollIntoView()">Prototipo App</button>
+    </div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="sc">
+    <div class="sn">82%</div>
+    <div class="sl">de jóvenes en economías ilegales no lo hacen por vocación criminal — lo hacen porque no existe una ruta legal visible y accesible hoy (UNODC 2023)</div>
+  </div>
+  <div class="sc">
+    <div class="sn">$0</div>
+    <div class="sl">es el costo de entrada al rebusque y a la economía ilegal. La legalidad siempre tiene barreras. Ruta360 debe tener cero barreras también</div>
+  </div>
+  <div class="sc">
+    <div class="sn">4–6h</div>
+    <div class="sl">es el horizonte temporal de decisión económica en un hogar de subsistencia. No meses. No semestres. Hoy. Ahora.</div>
+  </div>
+  <div class="sc">
+    <div class="sn">18×</div>
+    <div class="sl">es el retorno social documentado en prevención estructural vs atención post-delito. El problema no es seguridad — es acceso económico</div>
+  </div>
+</div>
+<hr class="divider">
+
+<!-- DIAGNÓSTICO SISTÉMICO -->
+<section id="diagnostico" class="sec">
+  <div class="sec-tag">01 — Diagnóstico Sistémico</div>
+  <h2 class="sec-h">El problema real<br>no es <em>el crimen</em></h2>
+  <p class="sec-p">El problema es la inexistencia de rutas legales de movilidad social que sean inmediatas, visibles y sin barreras en los territorios vulnerables. El crimen no gana por ser más atractivo. Gana porque es más accesible.</p>
+  <div class="diag-grid">
+    <div class="diag-cell">
+      <div class="diag-label label-r">Diagnóstico previo — lo que falla</div>
+      <div class="diag-h">El proyecto romanizaba la pobreza</div>
+      <div class="diag-p">Presentaba a Juan como una víctima pasiva a quien hay que "salvar" mediante tecnología y gamificación. Ignoraba su <strong>agencia real</strong>, su conocimiento del territorio y sus redes informales como capital social válido.</div>
+    </div>
+    <div class="diag-cell">
+      <div class="diag-label label-v">Corrección v3 — perspectiva sistémica</div>
+      <div class="diag-h">Juan es un actor racional en un sistema roto</div>
+      <div class="diag-p">Sus decisiones económicas son racionales dado el menú de opciones disponibles. <strong>El problema no es su actitud — es la arquitectura del sistema</strong> que no le ofrece alternativas viables en su horizonte temporal real.</div>
+    </div>
+    <div class="diag-cell">
+      <div class="diag-label label-r">Diagnóstico previo — diseño desde afuera</div>
+      <div class="diag-h">Diseñado desde la universidad, no desde el barrio</div>
+      <div class="diag-p">Suponía necesidades sin validación territorial. Los intermediarios comunitarios (el barbero, el líder de JAC, la madre comunitaria) eran decorativos, no estructurales.</div>
+    </div>
+    <div class="diag-cell">
+      <div class="diag-label label-v">Corrección v3 — diseño co-creado</div>
+      <div class="diag-h">La comunidad como co-diseñadora, no usuaria</div>
+      <div class="diag-p">Los intermediarios comunitarios son la <strong>columna vertebral del sistema</strong>. La app solo es la interfaz. El valor real está en las redes humanas preexistentes que Ruta360 potencia, no en la tecnología.</div>
+    </div>
+    <div class="diag-cell">
+      <div class="diag-label label-r">Diagnóstico previo — modelo financiero frágil</div>
+      <div class="diag-h">Modelo que dependía del altruismo</div>
+      <div class="diag-p">Asumía RSE sin retorno medible, ads éticos sin explicar el mecanismo, alianzas públicas sin describir los incentivos del Estado para participar.</div>
+    </div>
+    <div class="diag-cell">
+      <div class="diag-label label-v">Corrección v3 — modelo de intercambio de valor</div>
+      <div class="diag-h">Cada actor recibe algo concreto y medible</div>
+      <div class="diag-p">Las empresas reducen costo de reclutamiento y mejoran métricas ESG. El Estado reduce gasto en atención post-delito. Los comercios consiguen mano de obra flexible verificada. <strong>Nadie da gratis — todos intercambian valor real.</strong></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- RÉGIMEN DOMINANTE -->
+<section id="regimen" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">02 — Régimen Dominante Informal</div>
+  <h2 class="sec-h">Contra qué compite<br><em>Ruta360</em></h2>
+  <p class="sec-p">En términos de teoría de la transición sociotécnica, el "régimen dominante" no es el Estado ni las empresas — es la economía informal y las redes ilegales. Antes de diseñar el nicho, hay que entender el régimen.</p>
+  <div class="regime-box">
+    <div class="regime-title">El Régimen Informal-Criminal como Sistema</div>
+    <div class="regime-sub">No se trata de individuos malvados ni de falta de valores. Se trata de un sistema que resuelve necesidades reales de manera eficiente. Ignorar esto es el primer error de cualquier intervención social fallida.</div>
+    <div class="regime-cols">
+      <div>
+        <div class="regime-col-title rct-r">Lo que el régimen informal ofrece — y por qué gana</div>
+        <ul class="regime-list r-list">
+          <li><strong>Liquidez inmediata:</strong> ingreso el mismo día, sin contratos, sin formularios, sin espera</li>
+          <li><strong>Cero barreras de entrada:</strong> no pide diploma, carta de recomendación, ni cuenta bancaria</li>
+          <li><strong>Reconocimiento social:</strong> jerarquías visibles, reputación que se construye rápido</li>
+          <li><strong>Sentido de pertenencia:</strong> red de protección mutua, identidad grupal, lealtad</li>
+          <li><strong>Progresión visible:</strong> escala de "cargos" con responsabilidades y beneficios crecientes</li>
+          <li><strong>Operación offline:</strong> funciona sin smartphone, sin datos, sin electricidad constante</li>
+          <li><strong>Capital social transferible:</strong> la red de contactos sirve para acceder a más oportunidades</li>
+        </ul>
+      </div>
+      <div>
+        <div class="regime-col-title rct-v">Por qué el régimen formal-legal falla en el territorio</div>
+        <ul class="regime-list">
+          <li><strong>Horizonte temporal incompatible:</strong> promete resultados en meses o años en contextos de urgencia diaria</li>
+          <li><strong>Barreras documentales:</strong> SENA, cajas, universidades piden requisitos que el territorio no tiene</li>
+          <li><strong>Desconfianza institucional:</strong> historia de promesas incumplidas, estigmatización y violencia estatal</li>
+          <li><strong>Invisibilidad de rutas:</strong> las oportunidades legales existen pero no están en la pantalla de Juan</li>
+          <li><strong>Fricciones de movilidad:</strong> transporte, horarios rígidos, uniforme, vocabulario — todo es una barrera</li>
+          <li><strong>Reputación sin portabilidad:</strong> los logros informales no se traducen en credenciales formales</li>
+          <li><strong>Narrativa de largo plazo:</strong> "estudia y en 10 años..." no compite con "ayúdame hoy y te pago mañana"</li>
+        </ul>
+      </div>
+    </div>
+    <div class="regime-tension">
+      ⚡ TENSIÓN CENTRAL: Ruta360 no puede simplemente "persuadir" a Juan de que elija la legalidad. Debe construir una alternativa que resuelva las mismas necesidades que el régimen informal resuelve, con menor fricción y mayor seguridad. Eso es competir en el mismo mercado, no en un mercado moral diferente.
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PERSONAS — más sistémicas -->
+<section class="sec" style="padding-top:60px;">
+  <div class="sec-tag">03 — Actores del Territorio</div>
+  <h2 class="sec-h">Quiénes son. Qué necesitan.<br>Qué <em>bloquea</em> su ruta.</h2>
+  <p class="sec-p">No "personas vulnerables". Actores racionales con capacidades reales, redes informales activas y necesidades concretas que el sistema formal no resuelve.</p>
+  <div class="personas">
+    <div class="persona pjuan">
+      <div class="p-num">PERFIL 01 · 17 AÑOS · MASCULINO</div>
+      <div class="p-name">Juan</div>
+      <div class="p-loc">📍 Ciudad Bolívar · Barrio Lucero Alto</div>
+      <div class="p-quote">"Si estudio, ¿cuándo veo la plata? Mi mamá necesita $150k para el arriendo el viernes."</div>
+      <div class="p-need-label">Capacidades reales (invisibles al sistema)</div>
+      <div class="p-need">Gestión de inventario informal, domicilios, reparaciones básicas, conocimiento del territorio, habilidad para negociar en condiciones de alta incertidumbre. <strong>Capital social extenso</strong> en su cuadra.</div>
+      <div class="p-barrier-label">Barreras estructurales (no actitudinales)</div>
+      <div class="p-barrier">Sin cuenta bancaria. Sin historial crediticio. Sin diploma de bachillerato completo. Sin referencias laborales. <strong>Sin tiempo para rutas de largo plazo</strong> dado el déficit inmediato del hogar.</div>
+    </div>
+    <div class="persona pval">
+      <div class="p-num">PERFIL 02 · 19 AÑOS · FEMENINO</div>
+      <div class="p-name">Valentina</div>
+      <div class="p-loc">📍 Kennedy · Barrio Patio Bonito</div>
+      <div class="p-quote">"Sé cocinar, sé atender clientes, sé llevar cuentas. Nadie me contrata porque no tengo un papel que lo diga."</div>
+      <div class="p-need-label">Capacidades reales (invisibles al sistema)</div>
+      <div class="p-need">Experiencia real en cocina, manejo de caja, atención al cliente, organización logística. <strong>Emprendedora informal activa</strong> — ya genera ingresos sin reconocimiento institucional.</div>
+      <div class="p-barrier-label">Barreras estructurales (no actitudinales)</div>
+      <div class="p-barrier">El sistema formal no reconoce saberes informales. <strong>Brecha de credenciales</strong>: lo que ella sabe no existe para el mercado formal porque no tiene certificado. Responsabilidad de cuidado familiar limita horarios.</div>
+    </div>
+    <div class="persona pseb">
+      <div class="p-num">PERFIL 03 · 22 AÑOS · MASCULINO</div>
+      <div class="p-name">Sebastián</div>
+      <div class="p-loc">📍 Suba · Rincón</div>
+      <div class="p-quote">"Ya salí. Pero si en 15 días no consigo trabajo, la presión del barrio me devuelve. No es que quiera — es que no tengo con qué resistir."</div>
+      <div class="p-need-label">Capacidades reales (invisibles al sistema)</div>
+      <div class="p-need">Disciplina organizacional, trabajo bajo presión, lealtad en redes de trabajo. <strong>Motivación profunda de transición</strong> — ya tomó la decisión más difícil. Solo necesita una ruta que sostenga esa decisión.</div>
+      <div class="p-barrier-label">Barreras estructurales (no actitudinales)</div>
+      <div class="p-barrier">Estigma de antecedentes. Desconfianza de empleadores. <strong>Ventana de oportunidad corta</strong>: la urgencia económica puede revertir su decisión en semanas. El sistema formal opera en meses.</div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- NICHO SOCIOTÉCNICO -->
+<section id="nicho" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">04 — Nicho Sociotécnico</div>
+  <h2 class="sec-h">Ruta360 como<br><em>nicho alternativo</em></h2>
+  <p class="sec-p">En la teoría de la transición sociotécnica (Geels, 2002), los nichos son espacios protegidos donde emergen alternativas al régimen dominante. Ruta360 no es un programa social — es un nicho que construye las condiciones para que la movilidad legal sea viable.</p>
+  <div class="niche-diagram">
+    <div class="niche-col">
+      <div class="niche-label" style="color:var(--rojo);">Régimen Dominante · Economía Informal</div>
+      <div class="niche-h">Lo que existe hoy</div>
+      <ul class="niche-list">
+        <li>Redes de rebusque y economía callejera</li>
+        <li>Microcriminalidad organizada jerárquicamente</li>
+        <li>Economía del "parche" — lealtad por ingreso</li>
+        <li>Mercados informales de habilidades sin certificación</li>
+        <li>Crédito gota a gota y prestamistas barriales</li>
+        <li>Reputación construida en redes físicas presenciales</li>
+        <li>Movilidad por capital social informal, no formal</li>
+      </ul>
+    </div>
+    <div class="niche-arrow">
+      <span>Tensión</span>
+      <div style="font-size:1.5rem;color:var(--gris2);">⇄</div>
+      <span>Transición</span>
+    </div>
+    <div class="niche-col">
+      <div class="niche-label" style="color:var(--verde);">Nicho Emergente · Ruta360</div>
+      <div class="niche-h">Lo que construye Ruta360</div>
+      <ul class="niche-list">
+        <li>Red de microempleadores locales verificados con pago inmediato</li>
+        <li>Reputación digital portátil y acumulable — un "CV del barrio"</li>
+        <li>Intermediarios comunitarios como nodos de confianza</li>
+        <li>Certificación de saberes informales con validez en mercado formal</li>
+        <li>Economía de recompensas vinculada al comercio local</li>
+        <li>Comunidad de pares con progresión visible</li>
+        <li>Rutas de escala: microtrabajo → empleo formal → emprendimiento</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:1px;background:var(--bg2);border:1px solid var(--line);padding:32px 40px;">
+    <div class="sec-tag" style="margin-bottom:10px;">Cómo se protege el nicho</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+      <div>
+        <div style="font-family:var(--FM);font-size:0.6rem;color:var(--ocre);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Protección interna</div>
+        <div style="font-size:0.85rem;color:var(--gris);line-height:1.6;">El nicho se protege desde adentro mediante <strong style="color:var(--blanco);">identidad territorial</strong>. La app es percibida como propia del barrio, no como intervención externa. Los embajadores comunitarios son la barrera de entrada para actores que quieran capturar o corromper el sistema.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--FM);font-size:0.6rem;color:var(--ocre);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Protección externa</div>
+        <div style="font-size:0.85rem;color:var(--gris);line-height:1.6;">Alianzas con <strong style="color:var(--blanco);">actores con legitimidad institucional</strong> (IDIPRON, SENA, Cámara de Comercio) crean un escudo contra capturas criminales, sin que esos actores sean el rostro visible del sistema ante los jóvenes.</div>
+      </div>
+      <div>
+        <div style="font-family:var(--FM);font-size:0.6rem;color:var(--ocre);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Escalamiento del nicho</div>
+        <div style="font-size:0.85rem;color:var(--gris);line-height:1.6;">El nicho escala cuando <strong style="color:var(--blanco);">los ex-usuarios se convierten en intermediarios</strong>. Juan de nivel 5 conecta a 10 Juanes nuevos. El sistema se autoescala por contagio social, no por publicidad institucional.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- RED DE ACTORES -->
+<section id="actores" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">05 — Red de Actores y Flujos</div>
+  <h2 class="sec-h">No hay usuarios.<br>Hay un <em>ecosistema</em>.</h2>
+  <p class="sec-p">Cada actor tiene un rol estructural, no decorativo. Cada uno gana algo concreto y necesita a los demás para que el sistema funcione. Esta es la diferencia entre una app y una infraestructura.</p>
+  <div class="actors-grid">
+    <div class="actor-card">
+      <div class="actor-ico">🧑‍🔧</div>
+      <div class="actor-role">Centro</div>
+      <div class="actor-name">Jóvenes</div>
+      <div class="actor-desc">Aportan trabajo, tiempo y reputación. Reciben ingreso, identidad y rutas. No son beneficiarios — son productores de valor.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">🏪</div>
+      <div class="actor-role">Primer círculo</div>
+      <div class="actor-name">Comercios Locales</div>
+      <div class="actor-desc">Tiendas, barberías, restaurantes, talleres. Generan microempleos con pago inmediato. Verifican reputación de jóvenes. Son el motor económico local.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">🤝</div>
+      <div class="actor-role">Columna vertebral</div>
+      <div class="actor-name">Intermediarios</div>
+      <div class="actor-desc">Líderes de JAC, madres comunitarias, ex-usuarios nivel 5. Son la frontera entre la app y el territorio. Sin ellos, la plataforma no llega.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">🏢</div>
+      <div class="actor-role">Segundo círculo</div>
+      <div class="actor-name">Empresas Aliadas</div>
+      <div class="actor-desc">Constructoras, logísticas, retail. Reciben talento verificado y reducen costo de reclutamiento. Pagan por acceso al pipeline de jóvenes certificados.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">🏛</div>
+      <div class="actor-role">Tercer círculo</div>
+      <div class="actor-name">Estado Local</div>
+      <div class="actor-desc">Alcaldías, IDIPRON, SENA. Ceden legitimidad institucional y acceso a subsidios. Reciben métricas de impacto que reducen su gasto en atención post-delito.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">🌱</div>
+      <div class="actor-role">Tercer círculo</div>
+      <div class="actor-name">Fundaciones</div>
+      <div class="actor-desc">ONGs locales e internacionales. Financian la etapa de nicho con inversión de impacto. Obtienen métricas verificables para sus reportes de sostenibilidad.</div>
+    </div>
+    <div class="actor-card">
+      <div class="actor-ico">👨‍👩‍👦</div>
+      <div class="actor-role">Sostenimiento</div>
+      <div class="actor-name">Redes Familiares</div>
+      <div class="actor-desc">La familia no es obstáculo — es aliada. Cuando la mamá ve el ingreso, se convierte en la primera embajadora. El hogar como unidad de difusión.</div>
+    </div>
+  </div>
+  <div class="actors-flows">
+    <div class="flow-card">
+      <div class="flow-from">Jóvenes → Comercios</div>
+      <div class="flow-arrow">Trabajo verificado, confiable, flexible</div>
+      <div class="flow-desc">Los jóvenes aportan mano de obra inmediata sin fricción de reclutamiento. Los comercios reciben <strong>candidatos pre-verificados por la comunidad</strong>, no desconocidos. Esto resuelve el problema de confianza que impide que los comercios contraten jóvenes del barrio.</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-from">Intermediarios → Jóvenes</div>
+      <div class="flow-arrow">Confianza, acceso y legitimidad</div>
+      <div class="flow-desc">El barbero del barrio no es un "embajador decorativo". Es el <strong>nodo de onboarding</strong>. Juan no descarga la app por una campaña institucional — la descarga porque Don Carlos se la recomendó. Esa confianza es el activo más valioso del sistema.</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-from">Empresas → Ecosistema</div>
+      <div class="flow-arrow">Capital, métricas y oportunidades formales</div>
+      <div class="flow-desc">Las empresas no hacen caridad — hacen una <strong>inversión con retorno medible</strong>: reducción de costo de reclutamiento, mejora de métricas ESG, acceso a mercado consumidor joven leal. El pago de las empresas financia las recompensas para los jóvenes.</div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- INTERMEDIARIOS — sección dedicada -->
+<section class="sec" style="padding-top:60px;">
+  <div class="sec-tag">06 — Intermediarios Sociales</div>
+  <h2 class="sec-h">Sin intermediarios,<br>no hay <em>transición</em></h2>
+  <p class="sec-p">La teoría de la innovación social identifica a los intermediarios como actores críticos de la difusión. En Ruta360, son la diferencia entre una plataforma que los jóvenes ignoran y una que atraviesa el régimen informal para llegar al territorio.</p>
+  <div class="interm-grid">
+    <div class="interm-card">
+      <div class="interm-tag">Intermediario Tipo 1 · Económico</div>
+      <div class="interm-name">El comerciante local</div>
+      <div class="interm-rol">El barbero, la señora de la tienda, el mecánico de la cuadra. <strong>Empleador inmediato y verificador de reputación.</strong> Su confianza en el joven es la garantía inicial. A cambio, Ruta360 les trae mano de obra flexible verificada sin costo de selección.</div>
+    </div>
+    <div class="interm-card">
+      <div class="interm-tag">Intermediario Tipo 2 · Comunitario</div>
+      <div class="interm-name">El líder barrial</div>
+      <div class="interm-rol">Presidente de JAC, líder comunal, gestor de convivencia. <strong>Valida la plataforma ante la comunidad.</strong> Su participación transforma a Ruta360 de "app de afuera" en "herramienta del barrio". Sin este aval, el régimen informal desacredita el sistema.</div>
+    </div>
+    <div class="interm-card">
+      <div class="interm-tag">Intermediario Tipo 3 · Experiencial</div>
+      <div class="interm-name">El ex-usuario nivel 5</div>
+      <div class="interm-rol">Juan de hace 18 meses que ya tiene empleo formal. <strong>El referente más poderoso</strong> porque comparte historia y territorio. "Si él pudo, yo puedo." No necesita argumentos morales — su trayectoria es la evidencia. Es el mecanismo central de difusión.</div>
+    </div>
+    <div class="interm-card">
+      <div class="interm-tag">Intermediario Tipo 4 · Institucional</div>
+      <div class="interm-name">La madre comunitaria</div>
+      <div class="interm-rol">Opera en el hogar como unidad de difusión. <strong>Conecta a madres preocupadas con el sistema.</strong> "La señora del ICBF que me conoce" es más confiable que cualquier campaña. Accede a las familias antes de que los jóvenes lleguen a la app.</div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- MODELO FINANCIERO -->
+<section id="modelo" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">07 — Modelo de Sostenibilidad Financiera</div>
+  <h2 class="sec-h">De dónde viene<br>la <em>plata de verdad</em></h2>
+  <p class="sec-p">El modelo financiero anterior dependía del altruismo. Este modelo depende del intercambio de valor. Cada actor paga porque recibe algo que vale más de lo que paga.</p>
+  <div class="fin-matrix">
+    <div class="fin-card">
+      <div class="fin-src">Fuente A · RSE con retorno medible</div>
+      <div class="fin-h">Empresas privadas</div>
+      <ul class="fin-items">
+        <li>Pagan por pipeline de talento verificado y preseleccionado</li>
+        <li>Reducción de costo de reclutamiento: ~$800k por contratación evitada</li>
+        <li>Métricas ESG auditables: empleos generados, reducción de riesgo territorial</li>
+        <li>Acceso preferencial como empleador en la plataforma</li>
+        <li>Financiación de módulos de formación alineados a sus necesidades</li>
+      </ul>
+      <div class="fin-est">Potencial: $15–40M COP/mes a escala de 5 empresas aliadas</div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-src">Fuente B · Microeconomía local</div>
+      <div class="fin-h">Comercios del territorio</div>
+      <ul class="fin-items">
+        <li>Publicación de microempleos con pago fijo por oferta activa: $15–30k COP</li>
+        <li>Suscripción mensual básica: acceso ilimitado a candidatos verificados: $80k COP</li>
+        <li>Canjes de recompensas: comercios dan productos/servicios a cambio de visibilidad</li>
+        <li>Comisión del 5% sobre transacciones de microempleo completadas</li>
+        <li>Publicidad local no invasiva: "El taller de Don Carlos está buscando..." vale más que un banner</li>
+      </ul>
+      <div class="fin-est">Potencial: $8–20M COP/mes con 200 comercios activos</div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-src">Fuente C · Sector público y cooperación</div>
+      <div class="fin-h">Estado y fundaciones</div>
+      <ul class="fin-items">
+        <li>IDIPRON: subsidio por usuario activo con métricas de permanencia en legalidad</li>
+        <li>Alcaldías locales: contratos por zonas piloto con indicadores de impacto</li>
+        <li>SENA: reconocimiento de módulos formativos como horas complementarias</li>
+        <li>Cajas de compensación: subsidios de conectividad y dispositivos para usuarios</li>
+        <li>Cooperación internacional (GIZ, BID Lab): inversión de impacto con retorno social</li>
+      </ul>
+      <div class="fin-est">Potencial: $30–80M COP/mes en fase de escalamiento con contratos institucionales</div>
+    </div>
+    <div class="fin-card">
+      <div class="fin-src">Fuente D · Modelo de datos de impacto</div>
+      <div class="fin-h">Datos anonimizados y métricas</div>
+      <ul class="fin-items">
+        <li>Venta de reportes de impacto territorial a alcaldías y secretarías (anonimizados)</li>
+        <li>Métricas de empleabilidad y formación a agencias de desarrollo</li>
+        <li>Datos de demanda laboral territorial a empresas de inversión social</li>
+        <li>Certificados digitales verificables: Ruta360 como entidad emisora (blockchain liviano)</li>
+        <li>Royalties por modelo replicado en otras ciudades</li>
+      </ul>
+      <div class="fin-est">Potencial a largo plazo: modelo de licenciamiento territorial escalable a otras ciudades</div>
+    </div>
+  </div>
+  <div class="fin-sostenibilidad">
+    <div class="fin-sos-h">El mecanismo de retroalimentación financiera</div>
+    <div class="fin-sos-p">Las empresas pagan porque los jóvenes verificados les ahorran costos. Ese pago financia las recompensas que retienen a los jóvenes. Los jóvenes activos atraen más comercios. Los comercios generan más microempleos. Más microempleos producen más datos de impacto. Más datos de impacto consiguen más contratos institucionales. <strong>El sistema se autofinancia porque cada actor recibe más valor del que aporta al principio.</strong> Esto no es altruismo — es diseño de incentivos.</div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PROTOTIPO APP -->
+<section id="proto" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">08 — Prototipo App · UX Territorial</div>
+  <h2 class="sec-h">La app que el<br>barrio <em>adoptaría</em></h2>
+  <p class="sec-p">El UX no imita a una startup de Silicon Valley. Imita a las apps que Juan ya tiene en el teléfono: directas, inmediatas, con recompensas visibles y cero fricción de entrada. El diseño es una decisión política.</p>
+
+  <div class="proto-shell">
+    <div class="proto-bar">
+      <div class="dot" style="background:#f04a4a;"></div>
+      <div class="dot" style="background:#d4a04a;"></div>
+      <div class="dot" style="background:#b8f04a;"></div>
+      <span>RUTA360 · PROTOTIPO v3 · UX Territorial · Correcciones sistémicas integradas</span>
+    </div>
+    <div class="proto-tabs">
+      <div class="ptab on" onclick="pt('home',this)">🏠 Inicio</div>
+      <div class="ptab" onclick="pt('id',this)">🏅 Mi Reputación</div>
+      <div class="ptab" onclick="pt('emp',this)">💼 Trabajo Hoy</div>
+      <div class="ptab" onclick="pt('wal',this)">💰 Billetera</div>
+      <div class="ptab" onclick="pt('ruta',this)">🗺 Mi Ruta</div>
+    </div>
+
+    <!-- HOME -->
+    <div class="tab-pane on" id="pane-home" style="grid-template-columns:280px 1fr;">
+      <div class="proto-phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="ph-scr">
+            <div class="ph-row">
+              <div>
+                <div class="ph-name">Hola, Juan 👋</div>
+                <div class="ph-sub">Nivel 3 · Constructor del Lucero · 8 días de racha</div>
+              </div>
+              <div class="ph-badge">🔔 2</div>
+            </div>
+            <div class="ph-xp">
+              <div class="ph-xp-l">Créditos Ruta · Tu plata legal</div>
+              <div class="ph-xp-v">840 CR</div>
+              <div class="ph-bar-bg"><div class="ph-bar" style="width:56%;"></div></div>
+              <div class="ph-bar-row"><span>Nivel 3</span><span>360 CR para Nivel 4</span></div>
+            </div>
+            <div class="ph-mini">
+              <div class="ph-mc"><div class="ph-mc-i">🔥</div><div class="ph-mc-l">Racha</div><div class="ph-mc-v">8 días</div></div>
+              <div class="ph-mc"><div class="ph-mc-i">🏆</div><div class="ph-mc-l">En el barrio</div><div class="ph-mc-v">#5</div></div>
+              <div class="ph-mc"><div class="ph-mc-i">💼</div><div class="ph-mc-l">Trabajo hoy</div><div class="ph-mc-v">2pm</div></div>
+              <div class="ph-mc"><div class="ph-mc-i">🤝</div><div class="ph-mc-l">Mentor</div><div class="ph-mc-v">Don Carlos</div></div>
+            </div>
+            <div class="ph-reto">
+              <div class="ph-reto-l">⚡ Trabajo disponible · HOY</div>
+              <div class="ph-reto-t">Tienda La Economía · Kennedy<br><strong style="color:var(--verde);">$25.000 hoy al terminar</strong> + 80 CR</div>
+            </div>
+            <div class="ph-offline">📶 Modo ahorro activo · 2MB/día</div>
+            <div class="ph-nav">
+              <div class="ph-nav-i on"><div class="ph-nav-icon">🏠</div><span class="ph-nav-l">Inicio</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏅</div><span class="ph-nav-l">Yo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💼</div><span class="ph-nav-l">Trabajo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💰</div><span class="ph-nav-l">Billetera</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🗺</div><span class="ph-nav-l">Ruta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proto-text-col">
+        <div class="pt-h">Dashboard de Supervivencia Legal:<br>Lo urgente primero</div>
+        <div class="pt-p">No se parece a una app educativa. Se parece al <strong>panel de un juego donde la vida real es el juego</strong>. Juan ve en dos segundos: cuánto tiene, qué puede ganar hoy, y dónde está parado. Sin menús. Sin procesos.</div>
+        <ul class="ft-list">
+          <li><strong>Trabajo concreto con pago del día</strong> — el primer elemento visible es dinero, no un módulo de aprendizaje</li>
+          <li><strong>Mentor del barrio con nombre propio</strong> — Don Carlos, no "Tutor Asignado". La humanización es estratégica</li>
+          <li><strong>Ranking del barrio</strong> — competencia entre pares del mismo territorio genera arraigo comunitario</li>
+          <li><strong>Modo ahorro siempre visible</strong> — la app sabe que Juan puede no tener datos; es offline-first por diseño</li>
+          <li><strong>Créditos Ruta = ingreso real</strong> — son canjeables por recompensas tangibles, no virtuales</li>
+        </ul>
+        <div class="proto-correction">
+          <div class="pc-tag">Corrección sistémica — diferencia con v2</div>
+          <div class="pc-text">La v2 ponía la gamificación en el centro. La v3 pone <strong>el ingreso económico en el centro</strong>. La gamificación es la interfaz, no el propósito. Juan no abre la app para jugar — la abre porque hay $25.000 esperándolo.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REPUTACIÓN -->
+    <div class="tab-pane" id="pane-id" style="grid-template-columns:280px 1fr;">
+      <div class="proto-phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="ph-scr" style="padding:0;gap:0;">
+            <div class="ph-id-hdr">
+              <div class="ph-id-av">🧑</div>
+              <div class="ph-id-name">Juan Morales</div>
+              <div class="ph-id-tag">NIVEL 3 · Constructor del Lucero · Ciudad Bolívar</div>
+            </div>
+            <div style="padding:8px 12px 4px;font-family:var(--FM);font-size:0.44rem;color:var(--verde);letter-spacing:0.1em;text-transform:uppercase;">Reputación Comunitaria</div>
+            <div class="ph-rep-grid">
+              <div class="ph-rep">
+                <div class="ph-rep-n">Confiabilidad</div>
+                <div class="ph-rep-bar-bg"><div class="ph-rep-bar" style="width:78%;background:var(--verde);"></div></div>
+                <div class="ph-rep-v" style="color:var(--verde);">78/100</div>
+              </div>
+              <div class="ph-rep">
+                <div class="ph-rep-n">Puntualidad</div>
+                <div class="ph-rep-bar-bg"><div class="ph-rep-bar" style="width:65%;background:var(--ocre);"></div></div>
+                <div class="ph-rep-v" style="color:var(--ocre);">65/100</div>
+              </div>
+              <div class="ph-rep">
+                <div class="ph-rep-n">Habilidades</div>
+                <div class="ph-rep-bar-bg"><div class="ph-rep-bar" style="width:55%;background:#7b9eff;"></div></div>
+                <div class="ph-rep-v" style="color:#7b9eff;">55/100</div>
+              </div>
+              <div class="ph-rep">
+                <div class="ph-rep-n">Impacto barrio</div>
+                <div class="ph-rep-bar-bg"><div class="ph-rep-bar" style="width:42%;background:var(--rojo);"></div></div>
+                <div class="ph-rep-v" style="color:var(--rojo);">42/100</div>
+              </div>
+            </div>
+            <div class="ph-verif">
+              <strong>VERIFICADO POR PERSONAS REALES:</strong>
+              Don Carlos (Panadería) · Barbería Estilo · Tienda La Economía · Lider JAC
+            </div>
+            <div class="ph-nav" style="margin-top:auto;">
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏠</div><span class="ph-nav-l">Inicio</span></div>
+              <div class="ph-nav-i on"><div class="ph-nav-icon">🏅</div><span class="ph-nav-l">Yo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💼</div><span class="ph-nav-l">Trabajo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💰</div><span class="ph-nav-l">Billetera</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🗺</div><span class="ph-nav-l">Ruta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proto-text-col">
+        <div class="pt-h">Reputación Comunitaria:<br>El CV que el sistema formal niega</div>
+        <div class="pt-p">Este es el cambio más profundo. La reputación digital de Juan <strong>no la construye un algoritmo</strong> — la construyen personas reales del barrio que lo conocen, trabajaron con él y responden por él. Eso vale más que un diploma en su contexto.</div>
+        <ul class="ft-list">
+          <li><strong>Verificadores humanos, no automáticos</strong> — Don Carlos, el líder de JAC, la señora de la tienda avalan la reputación. Su nombre aparece. Hay responsabilidad real detrás</li>
+          <li><strong>Portabilidad del perfil</strong> — Juan puede mostrar su perfil a cualquier empresa aliada como su historial de confiabilidad. El "CV del barrio" es exportable</li>
+          <li><strong>Reputación acumulativa e irreversible</strong> — no se puede resetear. Esto crea incentivos a largo plazo para mantenerla</li>
+          <li><strong>Las dimensiones importan</strong> — Confiabilidad, Puntualidad, Habilidades, Impacto en el barrio. Son métricas que el mercado laboral valora y que Juan antes no podía demostrar</li>
+        </ul>
+        <div class="proto-correction">
+          <div class="pc-tag">Corrección sistémica</div>
+          <div class="pc-text">La v2 hablaba de "identidad digital". La v3 habla de <strong>reputación comunitaria verificada</strong>. La diferencia: la identidad la define el usuario solo, la reputación la define la comunidad. El segundo es el activo real.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRABAJO HOY -->
+    <div class="tab-pane" id="pane-emp" style="grid-template-columns:280px 1fr;">
+      <div class="proto-phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="ph-scr" style="padding:16px 0 10px;gap:0;">
+            <div class="ph-job-hdr">
+              <div style="font-family:var(--FM);font-size:0.6rem;font-weight:600;color:var(--blanco);margin-bottom:3px;">💼 Trabajo disponible</div>
+              <div class="ph-job-tag">⚡ Pago el mismo día · Solo zona tuya</div>
+            </div>
+            <div class="ph-jobs">
+              <div class="ph-job featured">
+                <div class="ph-job-ico">📦</div>
+                <div>
+                  <div class="ph-job-title">Auxiliar logístico · HOY 2pm</div>
+                  <div class="ph-job-meta">Tienda La Economía · Kennedy · 3h</div>
+                  <div class="ph-job-pay">$25.000 al terminar + 80 CR</div>
+                  <span class="ph-job-tag2">⚡ Sin experiencia · Pago inmediato</span>
+                </div>
+              </div>
+              <div class="ph-job">
+                <div class="ph-job-ico">🍳</div>
+                <div>
+                  <div class="ph-job-title">Ayudante cocina · Mañana 7am</div>
+                  <div class="ph-job-meta">Doña Rosa · Bosa · 4h</div>
+                  <div class="ph-job-pay">$30.000 al terminar + 100 CR</div>
+                  <span class="ph-job-tag2">Desayuno incluido</span>
+                </div>
+              </div>
+              <div class="ph-job">
+                <div class="ph-job-ico">✂️</div>
+                <div>
+                  <div class="ph-job-title">Asistente barbería · Sábado</div>
+                  <div class="ph-job-meta">Barbería Estilo Libre · C. Bolívar</div>
+                  <div class="ph-job-pay">$18.000 + certificado oficio</div>
+                  <span class="ph-job-tag2">Aprende + ganas al tiempo</span>
+                </div>
+              </div>
+              <div class="ph-job">
+                <div class="ph-job-ico">🔧</div>
+                <div>
+                  <div class="ph-job-title">Mantenimiento · Flexible</div>
+                  <div class="ph-job-meta">Red comercios Ruta360 · 2–5h</div>
+                  <div class="ph-job-pay">$20–45k según horas</div>
+                  <span class="ph-job-tag2">Herramientas prestadas</span>
+                </div>
+              </div>
+            </div>
+            <div class="ph-nav" style="margin-top:auto;margin:auto 12px 0;">
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏠</div><span class="ph-nav-l">Inicio</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏅</div><span class="ph-nav-l">Yo</span></div>
+              <div class="ph-nav-i on"><div class="ph-nav-icon">💼</div><span class="ph-nav-l">Trabajo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💰</div><span class="ph-nav-l">Billetera</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🗺</div><span class="ph-nav-l">Ruta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proto-text-col">
+        <div class="pt-h">Microempleos Locales:<br>La respuesta directa a la <em>"vuelta"</em></div>
+        <div class="pt-p">Esta es la pantalla que compite con el régimen informal en su propio terreno. <strong>Plata hoy, sin barreras, sin trámites, en el barrio de Juan.</strong> No es formación para el futuro — es ingreso para esta tarde.</div>
+        <ul class="ft-list">
+          <li><strong>Pago el mismo día al terminar</strong> — no quincena, no transferencia en 3 días. Nequi o efectivo al finalizar. Eso compite con la "vuelta rápida"</li>
+          <li><strong>Empleadores con cara y nombre</strong> — "Doña Rosa de Bosa" es alguien real del barrio. Eso reduce el miedo a la estafa y construye confianza</li>
+          <li><strong>Geolocalización sin fricción</strong> — solo aparecen trabajos en la zona de Juan. Cero gasto de transporte en la ecuación inicial</li>
+          <li><strong>Habilidades reales del territorio</strong> — cocina, barbería, logística, mantenimiento. No "redacción de emails" ni "Excel avanzado"</li>
+          <li><strong>Cero barreras documentales</strong> — la mayoría no requieren diploma ni contratos. Si tienes la verificación de la comunidad, entras</li>
+        </ul>
+        <div class="proto-correction">
+          <div class="pc-tag">Diferencia estructural con soluciones existentes</div>
+          <div class="pc-text">El SENA, el IDIPRON, las ONG — todas operan en horizonte de meses. <strong>Ruta360 opera en horizonte de horas.</strong> Esa diferencia temporal es la diferencia entre ser relevante y ser ignorado.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BILLETERA -->
+    <div class="tab-pane" id="pane-wal" style="grid-template-columns:280px 1fr;">
+      <div class="proto-phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="ph-scr" style="padding:16px 0 10px;gap:6px;">
+            <div style="padding:0 12px;font-family:var(--FM);font-size:0.6rem;font-weight:600;color:var(--blanco);">💰 Mi Billetera</div>
+            <div class="ph-wal-hdr">
+              <div class="ph-wal-l">Créditos Ruta disponibles</div>
+              <div class="ph-wal-v">840 CR</div>
+              <div class="ph-wal-sub">≈ $84.000 en recompensas · Nivel 3</div>
+            </div>
+            <div style="padding:0 12px;font-family:var(--FM);font-size:0.44rem;color:var(--verde);letter-spacing:0.08em;text-transform:uppercase;">Recompensas disponibles</div>
+            <div class="ph-rew-list">
+              <div class="ph-rew">
+                <div class="ph-rew-ico">📱</div>
+                <div class="ph-rew-info">
+                  <div class="ph-rew-name">1GB de datos Claro/Tigo</div>
+                  <div class="ph-rew-cost">200 CR · Patrocinado por Éxito</div>
+                </div>
+                <div class="ph-rew-btn">Canjear</div>
+              </div>
+              <div class="ph-rew">
+                <div class="ph-rew-ico">🍔</div>
+                <div class="ph-rew-info">
+                  <div class="ph-rew-name">Almuerzo Doña Rosa</div>
+                  <div class="ph-rew-cost">80 CR · Comercio local</div>
+                </div>
+                <div class="ph-rew-btn">Canjear</div>
+              </div>
+              <div class="ph-rew">
+                <div class="ph-rew-ico">🚌</div>
+                <div class="ph-rew-info">
+                  <div class="ph-rew-name">1 pasaje TransMilenio</div>
+                  <div class="ph-rew-cost">25 CR · Alcaldía local</div>
+                </div>
+                <div class="ph-rew-btn">Canjear</div>
+              </div>
+              <div class="ph-rew">
+                <div class="ph-rew-ico">📜</div>
+                <div class="ph-rew-info">
+                  <div class="ph-rew-name">Certificado oficio SENA</div>
+                  <div class="ph-rew-cost">500 CR · Alianza SENA</div>
+                </div>
+                <div class="ph-rew-btn">Ver</div>
+              </div>
+            </div>
+            <div class="ph-nav" style="margin-top:auto;">
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏠</div><span class="ph-nav-l">Inicio</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏅</div><span class="ph-nav-l">Yo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💼</div><span class="ph-nav-l">Trabajo</span></div>
+              <div class="ph-nav-i on"><div class="ph-nav-icon">💰</div><span class="ph-nav-l">Billetera</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🗺</div><span class="ph-nav-l">Ruta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proto-text-col">
+        <div class="pt-h">Billetera de Recompensas:<br>Valor tangible, no virtual</div>
+        <div class="pt-p">Los Créditos Ruta no son puntos de videojuego. Son <strong>poder de compra real vinculado a la economía local</strong>. Datos, comida, transporte — necesidades reales del territorio, no trofeos.</div>
+        <ul class="ft-list">
+          <li><strong>Recompensas de subsistencia primero</strong> — datos móviles, pasajes, almuerzos. Resuelven necesidades reales del día a día del territorio</li>
+          <li><strong>Comercios locales como red de canje</strong> — el canje de créditos ocurre en la tienda de Doña Rosa, no en una app externa. Fortalece la economía del barrio</li>
+          <li><strong>Escalamiento de valor</strong> — a niveles altos, los créditos dan acceso a certificados SENA, subsidios de materiales, pasantías. El sistema premia la permanencia</li>
+          <li><strong>Microeconomía circular</strong> — el dinero que las empresas aportan al sistema circula dentro del territorio, multiplicando su impacto económico local</li>
+        </ul>
+        <div class="proto-correction">
+          <div class="pc-tag">Corrección sistémica clave</div>
+          <div class="pc-text">La v2 hablaba de "ads éticos" sin explicar el mecanismo. La v3 lo explica: <strong>las empresas pagan por aparecer en la billetera como patrocinadores de recompensas.</strong> El usuario gana valor tangible, la empresa gana visibilidad legítima. No es publicidad — es intercambio.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RUTA -->
+    <div class="tab-pane" id="pane-ruta" style="grid-template-columns:280px 1fr;">
+      <div class="proto-phone-col">
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="ph-scr" style="padding:16px 0 10px;gap:0;">
+            <div style="padding:0 12px 8px;font-family:var(--FM);font-size:0.6rem;font-weight:600;color:var(--blanco);">🗺 Tu Ruta de Vida</div>
+            <div class="ph-ruta">
+              <div class="ph-node done">
+                <div class="ph-circle">✓</div>
+                <div>
+                  <div class="ph-node-n">Nivel 1 · Primer contacto</div>
+                  <div class="ph-node-s">Onboarding + 3 microtrabajos</div>
+                </div>
+              </div>
+              <div class="ph-node done">
+                <div class="ph-circle">✓</div>
+                <div>
+                  <div class="ph-node-n">Nivel 2 · Raíces en el barrio</div>
+                  <div class="ph-node-s">5 empleadores · Perfil verificado</div>
+                </div>
+              </div>
+              <div class="ph-node active">
+                <div class="ph-circle">3</div>
+                <div>
+                  <div class="ph-node-n">Nivel 3 · Constructor</div>
+                  <div class="ph-node-s">Módulo técnico · En progreso</div>
+                </div>
+              </div>
+              <div class="ph-node locked">
+                <div class="ph-circle">4</div>
+                <div>
+                  <div class="ph-node-n">Nivel 4 · Referente</div>
+                  <div class="ph-node-s">Mentoría + empleo formal</div>
+                </div>
+              </div>
+              <div class="ph-node locked">
+                <div class="ph-circle">5</div>
+                <div>
+                  <div class="ph-node-n">Nivel 5 · Embajador</div>
+                  <div class="ph-node-s">Tú conectas a los nuevos Juanes</div>
+                </div>
+              </div>
+            </div>
+            <div class="ph-nav" style="margin-top:auto;">
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏠</div><span class="ph-nav-l">Inicio</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">🏅</div><span class="ph-nav-l">Yo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💼</div><span class="ph-nav-l">Trabajo</span></div>
+              <div class="ph-nav-i"><div class="ph-nav-icon">💰</div><span class="ph-nav-l">Billetera</span></div>
+              <div class="ph-nav-i on"><div class="ph-nav-icon">🗺</div><span class="ph-nav-l">Ruta</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="proto-text-col">
+        <div class="pt-h">Ruta de Vida:<br>Movilidad visible, no prometida</div>
+        <div class="pt-p">La ruta no es un menú de cursos. Es <strong>una trayectoria de transición sociotécnica visible</strong>. Juan puede ver exactamente dónde está, qué viene, y — esto es crítico — cuándo y cómo el sistema lo convertirá en el referente que convirte a otros.</div>
+        <ul class="ft-list">
+          <li><strong>Cada nivel tiene un nombre territorial</strong> — "Constructor del Lucero", no "Usuario Premium". La identidad está anclada al barrio, no a la plataforma</li>
+          <li><strong>El nivel 5 es el mecanismo de escala</strong> — Juan embajador conecta a los nuevos Juanes. El sistema crece por contagio social, no por marketing</li>
+          <li><strong>Progresión mixta: trabajo + formación + comunidad</strong> — no basta con hacer cursos. Hay que trabajar, conectar y contribuir al barrio. Eso construye ciudadanía, no solo empleabilidad</li>
+          <li><strong>La ruta es pública en el barrio</strong> — el ranking visible genera competencia sana entre pares. "¿Cómo estás tú en nivel 3 si entraste después que yo?"</li>
+        </ul>
+        <div class="proto-correction">
+          <div class="pc-tag">El mecanismo de difusión más importante</div>
+          <div class="pc-text">El nivel 5 no es un logro decorativo. Es el <strong>mecanismo central de escalamiento</strong>: cada Embajador se convierte en intermediario comunitario, replicando el sistema sin costo de adquisición. Eso es innovación desde la base.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- INDICADORES -->
+<section class="sec" style="padding-top:60px;">
+  <div class="sec-tag">09 — Indicadores de Innovación Social</div>
+  <h2 class="sec-h">Cómo medimos<br>el <em>impacto real</em></h2>
+  <p class="sec-p">Los indicadores no son de "engagement". Son de transformación estructural. La diferencia entre medir visitas y medir si el régimen informal pierde terreno.</p>
+  <div class="ind-grid">
+    <div class="ind-card">
+      <div class="ind-dim">Dimensión · Individual</div>
+      <div class="ind-h">Transformación del actor</div>
+      <ul class="ind-list">
+        <li>Ingresos mensuales antes/después de entrada a la plataforma<span>Medición directa, no estimada</span></li>
+        <li>Número de días sin exposición a ofertas informales-ilegales<span>Autorregistro verificado por intermediario</span></li>
+        <li>Habilidades certificadas acumuladas vs habilidades al inicio<span>Brecha de credenciales cerrada</span></li>
+        <li>Tiempo de espera entre solicitud y primer microtrabajo<span>Meta: menos de 48 horas</span></li>
+        <li>Tasa de retención a 30/90/180 días<span>Retención &gt;60% a 90 días = sistema funciona</span></li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-dim">Dimensión · Comunitaria y Territorial</div>
+      <div class="ind-h">Transformación del nicho</div>
+      <ul class="ind-list">
+        <li>Porcentaje de comercios locales aliados por barrio piloto<span>Meta: 30% de comercios formales del territorio</span></li>
+        <li>Número de intermediarios comunitarios activos<span>Sin intermediarios = sistema en riesgo</span></li>
+        <li>Cambio en percepción de seguridad barrial (encuesta)<span>Indicador de legitimidad territorial</span></li>
+        <li>Volumen de transacciones económicas intra-barrio generadas<span>Microeconomía circular activada</span></li>
+        <li>Ratio de usuarios nivel 5 actuando como embajadores<span>Meta: 1 embajador por cada 15 usuarios</span></li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-dim">Dimensión · Sistémica e Institucional</div>
+      <div class="ind-h">Transformación del régimen</div>
+      <ul class="ind-list">
+        <li>Reducción relativa de primeras detenciones de menores en zonas piloto<span>Comparado con zonas control. Indicador largo plazo.</span></li>
+        <li>Número de empresas que contratan directamente desde la plataforma<span>Señal de que el nicho penetra el régimen formal</span></li>
+        <li>Ahorro estimado del Estado en atención post-delito por usuario activo<span>ROI social: argumento para contratos públicos</span></li>
+        <li>Replicaciones del modelo en otras localidades sin financiación central<span>Autonomía del nicho = éxito de la transición</span></li>
+        <li>Reconocimiento institucional de certificados Ruta360 por actores formales<span>Señal de legitimación del nicho por el régimen</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ESCALAMIENTO -->
+<section id="escala" class="sec" style="padding-top:60px;">
+  <div class="sec-tag">10 — Difusión y Escalamiento</div>
+  <h2 class="sec-h">Cómo crece sin<br>perder lo <em>territorial</em></h2>
+  <p class="sec-p">El error clásico de los proyectos de innovación social es escalar perdiendo la identidad territorial. La estrategia de Ruta360 escala el modelo, no la app. El barrio siempre es el centro.</p>
+  <div class="escala-steps">
+    <div class="escala-item">
+      <div class="esc-num"><div class="esc-num-inner">01</div></div>
+      <div class="esc-body">
+        <div class="esc-h">Fase de nicho protegido · Meses 1–6</div>
+        <div class="esc-p">Un barrio piloto, máximo 200 usuarios, <strong>seleccionados con los intermediarios comunitarios</strong>, no por métricas de descarga. El objetivo no es crecer — es aprender. ¿Qué recompensas funcionan? ¿Qué microempleos retienen? ¿Qué intermediarios son realmente nodos de confianza? La tecnología es la última preocupación.</div>
+      </div>
+      <div class="esc-meta">
+        <div class="esc-tag">Métricas de fase</div>
+        <div class="esc-val">200 usuarios · 1 barrio</div>
+        <div class="esc-tag">Éxito</div>
+        <div class="esc-val">Retención &gt;60% a 90 días</div>
+        <div class="esc-tag">Riesgo</div>
+        <div class="esc-val">Captura por actores ilegales</div>
+      </div>
+    </div>
+    <div class="escala-item">
+      <div class="esc-num"><div class="esc-num-inner">02</div></div>
+      <div class="esc-body">
+        <div class="esc-h">Fase de difusión territorial · Meses 6–18</div>
+        <div class="esc-p">Los embajadores de nivel 5 del barrio piloto se convierten en los intermediarios de los dos barrios adyacentes. <strong>No hay campaña de marketing — hay transferencia de confianza</strong>. La plataforma viaja pegada a las redes sociales físicas preexistentes, no al algoritmo. Cada nuevo barrio adapta el modelo a su microeconomía local.</div>
+      </div>
+      <div class="esc-meta">
+        <div class="esc-tag">Métricas de fase</div>
+        <div class="esc-val">3 barrios · ~600 usuarios</div>
+        <div class="esc-tag">Éxito</div>
+        <div class="esc-val">2+ empresas aliadas activas</div>
+        <div class="esc-tag">Señal de escala</div>
+        <div class="esc-val">1 contrato institucional</div>
+      </div>
+    </div>
+    <div class="escala-item">
+      <div class="esc-num"><div class="esc-num-inner">03</div></div>
+      <div class="esc-body">
+        <div class="esc-h">Fase de legitimación institucional · Meses 18–36</div>
+        <div class="esc-p">Con métricas de impacto reales, Ruta360 negocia con el Estado no como beneficiario de subsidio, sino como <strong>proveedor de infraestructura de política pública</strong>. El SENA reconoce los módulos. Las alcaldías contratan el modelo. Las empresas pagan por el pipeline. En esta fase el nicho comienza a afectar el régimen formal — esa es la transición sociotécnica.</div>
+      </div>
+      <div class="esc-meta">
+        <div class="esc-tag">Métricas de fase</div>
+        <div class="esc-val">5–8 barrios · 2.000+ usuarios</div>
+        <div class="esc-tag">Éxito</div>
+        <div class="esc-val">Autosuficiencia financiera</div>
+        <div class="esc-tag">Señal sistémica</div>
+        <div class="esc-val">Estado reconoce certificados</div>
+      </div>
+    </div>
+    <div class="escala-item">
+      <div class="esc-num"><div class="esc-num-inner">04</div></div>
+      <div class="esc-body">
+        <div class="esc-h">Fase de replicación autónoma · Años 3–5</div>
+        <div class="esc-p">El modelo se abre como protocolo: cualquier comunidad puede adoptar la arquitectura de Ruta360 adaptada a su territorio. <strong>Ruta360 no escala como empresa — escala como modelo</strong>. Medellín, Cali, Lima, Caracas tienen sus propias versiones, con sus propios intermediarios, su propia microeconomía y sus propias métricas. Eso es impacto sistémico.</div>
+      </div>
+      <div class="esc-meta">
+        <div class="esc-tag">Horizonte</div>
+        <div class="esc-val">Latinoamérica</div>
+        <div class="esc-tag">Modelo de escala</div>
+        <div class="esc-val">Protocolo + licencia social</div>
+        <div class="esc-tag">Indicador final</div>
+        <div class="esc-val">Replicación sin la sede central</div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- LENGUAJE — corrección de narrativa -->
+<section class="sec" style="padding-top:60px;">
+  <div class="sec-tag">11 — Lenguaje y Narrativa Sistémica</div>
+  <h2 class="sec-h">Cómo habla<br><em>Ruta360</em></h2>
+  <p class="sec-p">El lenguaje es una decisión política. Cada palabra que usamos define si nos posicionamos como intervención asistencialista o como infraestructura de movilidad.</p>
+  <div class="framing-grid">
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje asistencialista</div>
+      <div class="fr-old">"Combatir el crimen juvenil"</div>
+      <div class="fr-right">✓ Lenguaje sistémico</div>
+      <div class="fr-new">"Hacer viable la legalidad donde hoy no lo es"</div>
+    </div>
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje de ONG</div>
+      <div class="fr-old">"Educar y empoderar jóvenes vulnerables"</div>
+      <div class="fr-right">✓ Lenguaje de infraestructura</div>
+      <div class="fr-new">"Construir rutas de transición que el mercado formal no ofrece"</div>
+    </div>
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje de startup</div>
+      <div class="fr-old">"Disrumpir la pobreza con tecnología"</div>
+      <div class="fr-right">✓ Lenguaje territorial</div>
+      <div class="fr-new">"Poner la economía legal al alcance del que la necesita hoy"</div>
+    </div>
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje moralista</div>
+      <div class="fr-old">"Alejar a los jóvenes de las malas decisiones"</div>
+      <div class="fr-right">✓ Lenguaje económico</div>
+      <div class="fr-new">"Competir con el régimen informal en su propio terreno"</div>
+    </div>
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje institucional</div>
+      <div class="fr-old">"Programa de prevención del delito"</div>
+      <div class="fr-right">✓ Lenguaje de nicho</div>
+      <div class="fr-new">"Infraestructura alternativa de movilidad social legal"</div>
+    </div>
+    <div class="fr-cell">
+      <div class="fr-wrong">❌ Lenguaje del miserabilismo</div>
+      <div class="fr-old">"Salvar a los jóvenes de sus entornos"</div>
+      <div class="fr-right">✓ Lenguaje de agencia</div>
+      <div class="fr-new">"Ampliar el menú de opciones racionales que el territorio ofrece"</div>
+    </div>
+  </div>
+  <div style="margin-top:1px;background:var(--bg2);border:1px solid rgba(184,240,74,0.2);padding:36px 40px;">
+    <div class="sec-tag" style="margin-bottom:12px;">Frase central de la exposición</div>
+    <div style="font-family:var(--F);font-size:clamp(1.4rem,3vw,2.4rem);letter-spacing:0.02em;line-height:1.1;max-width:900px;">"<em style="color:var(--verde);font-style:normal;">Ruta360 no le pide a Juan que elija la legalidad.</em><br>Le construye la ruta para que la legalidad sea la decisión más fácil."</div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- PITCH CLOSE -->
+<div style="background:var(--bg);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 48px;">
+    <div class="pitch-close">
+      <div class="sec-tag" style="text-align:center;margin-bottom:20px;">Síntesis · Para la exposición</div>
+      <div class="pitch-h">No es una app.<br>Es una <em>infraestructura</em>.</div>
+      <div class="pitch-p">Ruta360 es un nicho sociotécnico emergente que construye las condiciones materiales para que la transición del régimen informal al formal sea posible, accesible y deseable en los territorios vulnerables de Bogotá. Compite con el rebusque, la economía informal y la microcriminalidad no desde la moral — sino desde el diseño de incentivos, los flujos de valor y la confianza comunitaria.</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-v" onclick="document.getElementById('diagnostico').scrollIntoView()">Leer el diagnóstico</button>
+        <button class="btn btn-g" onclick="document.getElementById('modelo').scrollIntoView()">Ver el modelo financiero</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="foot-brand">Ruta<span>360</span></div>
+    <div class="foot-sub">Infraestructura de Movilidad Social Legal · Bogotá, Colombia · v3 Sistémica</div>
+  </div>
+  <div class="foot-right">
+    Innovación Social · Nicho Sociotécnico · Innovación desde la Base<br>
+    Transición Formal/Informal · Impacto Sistémico<br>
+    <span style="color:var(--verde);">Diseñado desde el territorio, no desde la universidad</span>
+  </div>
+</footer>
+
+<script>
+function pt(id, el) {
+  document.querySelectorAll('.ptab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.tab-pane').forEach(p => { p.classList.remove('on'); p.style.display = 'none'; });
+  el.classList.add('on');
+  var pane = document.getElementById('pane-' + id);
+  pane.classList.add('on');
+  pane.style.display = 'grid';
+}
+// init
+document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+var first = document.getElementById('pane-home');
+if(first){ first.style.display = 'grid'; }
+</script>
+</body>
+</html>
